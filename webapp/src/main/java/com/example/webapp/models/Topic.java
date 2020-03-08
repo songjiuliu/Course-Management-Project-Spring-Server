@@ -9,7 +9,7 @@ import java.util.List;
 public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer _id;
+    private Integer id;
     private String title;
     private String test;
     private String lessonId;
@@ -26,11 +26,11 @@ public class Topic {
     }
 
     public Integer getId() {
-        return _id;
+        return id;
     }
 
     public void setId(Integer id) {
-        this._id = id;
+        this.id = id;
     }
 
     public String getTitle() {
