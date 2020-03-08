@@ -33,13 +33,13 @@ public class TopicController {
 //        newWidget.setSize(111);
 //        return topicService.createWidgetForTopic(tid, newWidget);
 //    }
-
-    @PostMapping("/api/topics/{tid}/widgets")
-    public Widget createWidgetForTopic(
-            @PathVariable("tid") Integer tid,
-            @RequestBody Widget newWidget) {
-        return topicService.createWidgetForTopic(tid, newWidget);
-    }
+//
+//    @PostMapping("/api/topics/{tid}/widgets")
+//    public Widget createWidgetForTopic(
+//            @PathVariable("tid") Integer tid,
+//            @RequestBody Widget newWidget) {
+//        return topicService.createWidgetForTopic(tid, newWidget);
+//    }
 
     @GetMapping("/api/topics")
     public List<Topic> findAllTopics() {
@@ -51,4 +51,16 @@ public class TopicController {
             @PathVariable("lessonId") String lessonId) {
         return topicService.findTopicsForLesson(lessonId);
     }
+
+    @PutMapping("/api/topics/{tid}")
+    public int updateWidget(@PathVariable("tid") int topicId,
+                            @RequestBody Topic topic) {
+        return topicService.updateTopic(topicId, topic);
+    }
+
+    @DeleteMapping("/api/topics/{tid}")
+    public int deleteWidget(@PathVariable("tid") int topicId) {
+        return topicService.deleteTopic(topicId);
+    }
+
 }
