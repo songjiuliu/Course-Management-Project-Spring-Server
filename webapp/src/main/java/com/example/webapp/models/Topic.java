@@ -26,7 +26,7 @@ public class Topic {
     }
 
     public Integer getId() {
-        return id;
+        return _id;
     }
 
     public void setId(Integer id) {
