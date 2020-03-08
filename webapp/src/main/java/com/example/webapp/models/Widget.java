@@ -1,29 +1,39 @@
 package com.example.webapp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Widget")
 public class Widget {
-    private String id;//
-    private String title;//
-    private String type = "HEADING";//
-    private String topicId;//
-    private int size = 1;//
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String title = "New Widget";
+    private String type = "HEADING";
+    private String text = "New Widget";
+    private int size = 2;
 
+    @ManyToOne
+    @JsonIgnore
+    private Topic topic;
 
-    private int order =1;
+    public Topic getTopic() {
+        return topic;
+    }
 
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
 
+    public String getText() {
+        return text;
+    }
 
-    private String text;
-    private String src;
-
-
-    private int width = 0;
-    private int height = 0;
-
-    private String cssClass;
-
-    private String style;
-    private String value;
-
+    public void setText(String text) {
+        this.text = text;
+    }
 
     public int getSize() {
         return size;
@@ -33,27 +43,11 @@ public class Widget {
         this.size = size;
     }
 
-    public String getTopicId() {
-        return topicId;
-    }
-
-    public void setTopicId(String topicId) {
-        this.topicId = topicId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -64,20 +58,12 @@ public class Widget {
     public void setTitle(String title) {
         this.title = title;
     }
-    public String getText() {
-        return text;
+
+    public String getType() {
+        return type;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-    public Widget(String id, String title, String type, String text) {
-        this.id = id;
-        this.title = title;
+    public void setType(String type) {
         this.type = type;
-        this.text = text;
-    }
-
-    public Widget() {
     }
 }

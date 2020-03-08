@@ -1,6 +1,8 @@
 package com.example.webapp.controllers;
 import com.example.webapp.models.Widget;
+import com.example.webapp.services.TopicService;
 import com.example.webapp.services.WidgetService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,24 +12,51 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class WidgetController {
 
-    WidgetService service = new WidgetService();
+    @Autowired
+    WidgetService service;
 
+    @Autowired
+    TopicService topicService;
+
+//    @GetMapping("/api/widgets/{wid}/update")
+//    public int updateWidgetNotRestfulBad(
+//            @PathVariable("wid") int widgetId) {
+//        Widget widget = new Widget();
+//        widget.setTitle("New and Improved Title");
+//        widget.setSize(123);
+//        return service.updateWidget(widgetId, widget);
+//    }
 
     @PutMapping("/api/widgets/{wid}")
-    public int updateWidget(@PathVariable("wid") String widgetId,
+    public int updateWidget(@PathVariable("wid") int widgetId,
                             @RequestBody Widget widget) {
         return service.updateWidget(widgetId, widget);
     }
 
+//    @GetMapping("/api/widgets/{wid}/delete")
+//    public int deleteWidgetNotRestful(@PathVariable("wid") int widgetId) {
+//        return service.deleteWidget(widgetId);
+//    }
+
     @DeleteMapping("/api/widgets/{wid}")
-    public int deleteWidget(@PathVariable("wid") String widgetId) {
+    public int deleteWidget(@PathVariable("wid") int widgetId) {
         return service.deleteWidget(widgetId);
     }
 
-    @PostMapping("/api/topics/{tid}/widgets")
-    public Widget createWidget(@PathVariable("tid") String tid,
-                               @RequestBody Widget widget) {
-        return service.createWidget(tid,widget);
+//    @GetMapping("/api/widgets/create")
+//    public Widget createWidgetNotRest() {
+//        Widget newWidget = new Widget();
+//        newWidget.setTitle("Not RESTful");
+//        newWidget.setSize(45);
+//        return service.createWidget(newWidget);
+//    }
+
+    @PostMapping("/api/topics/{topicId}/widgets")
+    public Widget createWidget(
+            @PathVariable("topicId") Integer topicId,
+            @RequestBody Widget newWidget) {
+        return topicService.createWidgetForTopic(topicId, newWidget);
+//        return service.createWidget(topicId, newWidget);
     }
 
     @GetMapping("/api/widgets")
@@ -35,11 +64,14 @@ public class WidgetController {
         return service.findAllWidgets();
     }
 
-    @GetMapping("/api/topics/{tid}/widgets")
-    public List<Widget> findWidgetsForTopic(@PathVariable("tid") String tid) {
-        return service.findWidgetsForTopic(tid);
+    @GetMapping("/api/widgets/{widgetId}")
+    public Widget findWidgetById(@PathVariable("widgetId") int wid) {
+        return service.findWidgetById(wid);
     }
 
-
+    @GetMapping("/api/topics/{tid}/widgets")
+    public List<Widget> findWidgetsForTopic(@PathVariable("tid") int tid) {
+        return service.findWidgetsForTopic(tid);
+    }
 
 }
