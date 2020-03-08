@@ -9,8 +9,9 @@ import java.util.List;
 public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer _id;
     private String title;
+    private String test;
     private String lessonId;
 
     @OneToMany(mappedBy = "topic")
@@ -29,7 +30,7 @@ public class Topic {
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getTitle() {
