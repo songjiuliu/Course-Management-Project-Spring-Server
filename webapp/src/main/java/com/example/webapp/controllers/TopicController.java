@@ -34,7 +34,7 @@ public class TopicController {
 //        return topicService.createWidgetForTopic(tid, newWidget);
 //    }
 
-    @PostMapping("/api/topics/{tid}/widgetseee")
+    @PostMapping("/api/topics/{tid}/widgets")
     public Widget createWidgetForTopic(
             @PathVariable("tid") Integer tid,
             @RequestBody Widget newWidget) {
