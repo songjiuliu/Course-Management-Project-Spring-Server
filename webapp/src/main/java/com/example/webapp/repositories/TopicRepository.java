@@ -16,7 +16,7 @@ public interface TopicRepository
     @Query("SELECT topic FROM Topic topic")
     public List<Topic> findAllTopics();
 
-    @Query("SELECT topic FROM Topic topic WHERE topic._id=:topicId")
+    @Query("SELECT topic FROM Topic topic WHERE topic.id=:topicId")
     public Topic findTopicById(@Param("topicId") int tid);
 
 
