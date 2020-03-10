@@ -14,8 +14,12 @@ public class Widget {
     private String type = "HEADING";
     private String text = "New Widget";
     private int size = 2;
+    private int ordernumber=1;
 
-    @ManyToOne
+
+
+
+    @ManyToOne(cascade={CascadeType.REFRESH})
     @JsonIgnore
     private Topic topic;
 
@@ -66,4 +70,13 @@ public class Widget {
     public void setType(String type) {
         this.type = type;
     }
+    public int getOrdernumber() {
+        return ordernumber;
+    }
+
+    public void setOrdernumber(int ordernumber) {
+        this.ordernumber = ordernumber;
+    }
+
+
 }

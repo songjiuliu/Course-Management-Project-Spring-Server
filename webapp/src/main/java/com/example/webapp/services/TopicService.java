@@ -29,10 +29,15 @@ public class TopicService {
 
     // TODO: delete topic
     public int deleteTopic(int tid) {
+        topicRepository.deleteById(tid);
         return 1;
     }
 
     public int updateTopic(int tid, Topic newTopic) {
+        topicRepository.findById(tid).map(topic -> {
+            topic.setTitle(newTopic.getTitle());
+            return topicRepository.save(topic);
+        });
         return 1;
     }
 
